@@ -49,7 +49,7 @@ void	create_list(t_list **list, int fd)
 
 		char_read = read(fd, buff, BUFFER_SIZE);
 		//Finaliza la función si no hay mas caracteres leidos.
-		if (!char_read)
+		if (!char_read || char_read == -1)
 		{
 			free(buff);
 			return ;
@@ -136,7 +136,7 @@ int main()
 	int	lines;
 
 	lines = 1;
-	fd = open("test.txt", O_RDONLY);
+	fd = 0;//open("test.txt", O_RDONLY);
 
 	while ((line = get_next_line(fd)))
 	{
