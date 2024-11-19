@@ -112,7 +112,7 @@ char	*get_next_line(int fd)
 	char		*next_ln;
 	
 	//Los fd solo son positivos, read devuelve -1 si hay algun problema de lectura.
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_ln, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 
 	//Creo la lista hasta que encuentro '/n'(salto de linea).
@@ -140,6 +140,7 @@ int main()
 
 	while ((line = get_next_line(fd)))
 	{
-		printf("%d->%s\n", lines++, line);
+		printf("%d->%s", lines++, line);
+		free(line);
 	}
 }
