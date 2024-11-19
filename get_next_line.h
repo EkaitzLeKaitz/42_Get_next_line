@@ -6,7 +6,7 @@
 /*   By: sagonzal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:20:15 by sagonzal          #+#    #+#             */
-/*   Updated: 2024/06/19 11:20:18 by sagonzal         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:46:53 by sagonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,15 @@ typedef struct	s_list
 	struct s_list	*next;
 }			t_list;
 
-int	found_nl(t_list *list);
+int	found_newln(t_list *list);
 char	*get_next_line(int fd);
+void	create_list(t_list **list, int fd);
+t_list	*find_last_node(t_list *list);
+void	append(t_list **list, char *buff);
+char	*get_line(t_list *list);
+void	dealloc(t_list **list, t_list *clean_node, char *buff);
+void	copy_str(t_list *list, char *str);
+int	len_to_newln(t_list *list);
+void	final_list(t_list **list);
 
 #endif

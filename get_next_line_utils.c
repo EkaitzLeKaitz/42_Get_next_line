@@ -6,9 +6,41 @@
 /*   By: sagonzal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:20:01 by sagonzal          #+#    #+#             */
-/*   Updated: 2024/06/19 11:20:04 by sagonzal         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:47:57 by sagonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
+#include <stdlib.h>
+
+t_list	*find_last_node(t_list *list)
+{
+	if (NULL == list)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
+}
+
+int	found_newln(t_list *list)
+{
+	int	i;
+
+	if (NULL == list)
+		return (0);
+	while (list)
+	{
+		i = 0;
+		while (list->str_buff[i] && i < BUFFER_SIZE)
+		{
+			if (list->str_buff[i] == '\n')
+				return (1);
+			++i;
+		}
+		list = list->next;
+	}
+	return (0);
+}
 
 int	len_to_newln(t_list *list)
 {
@@ -24,7 +56,7 @@ int	len_to_newln(t_list *list)
 		i = 0;
 		while (list->str_buff[i])
 		{
-			if (list->str_buff == '\n')
+			if (list->str_buff[i] == '\n')
 			{
 				++len;
 				return (len);
@@ -86,3 +118,5 @@ void	dealloc(t_list **list, t_list *clean_node, char *buff)
 		free(clean_node);
 	}
 }
+
+
